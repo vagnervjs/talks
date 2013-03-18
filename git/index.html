@@ -1,0 +1,854 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Controle de versões com Git</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="css/reveal.min.css">
+		<link rel="stylesheet" href="css/theme/night.css" id="theme">
+		<link type="text/css" rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<style>
+		 	body{
+		 		background: rgb(34, 34, 34);
+		 	}
+		</style>
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+			<div class="slides">
+                <section>
+                <h1 style="text-align: center;font-size: 130.0px;">
+                <b style="font-size: 100.0px;">
+                <font face="helvetica">
+                <span style="color: rgb(255,255,255);">Controle&nbsp;</span>
+                <span style="color: rgb(255,255,255);">de&nbsp;</span>
+                </font>
+                </b>
+                </h1>
+                <h1 style="text-align: center;font-size: 130.0px;">
+                <b style="font-size: 100.0px;">
+                <font face="helvetica">
+                <span style="color: rgb(255,255,255);">Versões&nbsp;</span>
+                <font color="#ffffff">com</font>
+                </font>
+                <font face="courier new">&nbsp;</font>
+                </b>
+                <br>
+                </h1>
+                <h1 style="text-align: center;font-size: 130.0px;">
+                <img src="http://i.imgur.com/25UOgtt.png" style="background: none;border: 0;box-shadow: 0 0 0;">&nbsp;</h1>
+                <div>
+                </div>
+                <div>
+                <br>
+                </div>
+                <div>
+                </div>
+                <div>
+                <b>
+                <font style="color: rgb(246,78,59);">
+                Vagner Santana
+                </font>
+                </b>
+                <br>
+                </div>
+                <div>
+                <b>
+                <font style="color: rgb(246,78,59);">
+                <a href="http://vagnersantana.com" style="color: rgb(246,78,59);font-size: 20.0px;">http://vagnersantana.com</a>
+                </font>
+                </b>
+                </div>
+                <div>
+                </div>
+
+
+
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);">
+                Agenda</h2>
+                <div style="text-align: left;font-size: 45.0px;line-height: 110.0%;">
+                <ul>
+                <li>Introdução</li>
+                <li>Instalação&nbsp;</li>
+                <li>Configuração</li>
+                <li>Iniciando um projeto</li>
+                <li>
+                <span style="">Áreas do git</span>
+                <br>
+                </li>
+                <li>Commit</li>
+                <li>Gerenciamento de índice</li>
+                <li>Stash / Branch</li>
+                <li>Merge / Rebase</li>
+                <li>Repositórios remotos: Modelo Centralizado / Modelo Distribuído</li>
+                <li>Extras</li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2>
+                <br>
+                </h2>
+                <h2>
+                <br>
+                </h2>
+                <h2>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">Dica:</b>
+                <br>
+                </h2>
+                <div>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">
+                <br>
+                </b>
+                </div>
+                <h2 style="text-align: center;">
+                <font color="#99ff00" face="Lato">Não se preocupe,&nbsp;</font>
+                </h2>
+                <h2 style="text-align: center;">
+                <font color="#99ff00" face="Lato">o&nbsp;início&nbsp;sempre é difícil!</font>
+                </h2>
+                <div>
+                <br>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Introdução</h2>
+                <p>História: Criado por <a href="http://github.com/torvalds">Linus Torvalds</a> para gerenciar o desenvolvimento do kernel do linux (antes era utilizado o bitKeeper).<span style="text-align: justify;">&nbsp;</span>
+                </p>
+                <div style="text-align: left;">
+                <div style="text-align: center;">
+                <img src="http://i.imgur.com/kBmtwIx.png">
+                <br>
+                </div>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Introdução</h2>
+                <br>
+                <div style="text-align: left;font-size: 36.0px;line-height: 130.0%;">
+                <ul>
+                <li class="fragment">Git não tem nada a ver com o <a href="http://subversion.tigris.org">Subversion</a>.</li>
+                <li class="fragment">Git é um filesystem distribuído. Ou seja não só códigos fontes, e sim qualquer tipo de arquivos.
+                </li>
+                <li class="fragment">Muito eficiente e confiável.</li>
+                <li class="fragment">Utiliza <a href="http://pt.wikipedia.org/wiki/SHA1">SHA1</a> para identificação dos commits.<br>
+                </li>
+                <li class="fragment">Dificilmente ocorre perca de arquivos no git.<br>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Instalação</h2>
+                <br>
+                <h3 style="font-size: 36.0px;line-height: 130.0%;text-align: left;">Linux</h3>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Instalando git e ssh
+                <pre style="font-size: 24.0px;width: 700.0px;">sudo apt-get install git-core git-svn ssh</pre>
+                </li>
+                <li class="fragment">
+                Gerando chaves ssh:
+                <pre class="fragment" style="font-size: 24.0px;width: 700.0px;">ssh keygen -t rsa</pre>
+                </li>
+                </ul>
+                <img src="http://i.imgur.com/8R48YKP.jpg" style="float: right;height: 290.0px;background: none;border: 0;box-shadow: 0 0 0;">
+                </div>
+
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Instalação</h2>
+                <br>
+                <h3 style="font-size: 36.0px;line-height: 130.0%;text-align: left;">Windows</h3>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Download: <a href="http://git-scm.com/download/win">http://git-scm.com/download/win</a>
+                </li>
+                <li class="fragment">
+                Abrir git bash e gerar chaves ssh:
+                <pre class="fragment" style="font-size: 24.0px;width: 700.0px;">ssh keygen -t rsa</pre>
+                </li>
+                </ul>
+                <img src="http://i.imgur.com/j4TjVZE.png" style="float: right;height: 200.0px;margin-top: 100.0px;background: none;border: 0;box-shadow: 0 0 0;">
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Instalação</h2>
+                <br>
+                <h3 style="font-size: 36.0px;line-height: 130.0%;text-align: left;">Mac</h3>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Download: <a href="http://git-scm.com/download/win">http://git-scm.com/download/mac</a>
+                </li>
+                <li class="fragment">
+                Ou, usando <a href="github.com/mxcl/homebrew">homebrew</a>
+                <pre class="fragment" style="font-size: 24.0px;width: 700.0px;">brew install git</pre>
+                </li>
+                <li class="fragment">
+                Gerando chaves ssh:
+                <pre class="fragment" style="font-size: 24.0px;width: 700.0px;">ssh keygen -t rsa</pre>
+                </li>
+                </ul>
+                <img src="http://i.imgur.com/uQFVbQQ.jpg" style="float: right;height: 200.0px;background: none;border: 0;box-shadow: 0 0 0;">
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Configuração</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Definindo nome e email para identificar autor
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git config --global user.name "vagnervjs"<br>git config --global user.email "vagnervjs@gmail.com"
+                </pre>
+                </li>
+                <li class="fragment">
+                Verificando
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">cat /Users/vagner/.gitconfig
+                </pre>
+                </li>
+                <li class="fragment">
+                Highlight
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">//arquivo .gitconfig<br>color: auto
+                </pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">Dica:</b>
+                <br>
+                </h2>
+                <div>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">
+                <br>
+                </b>
+                </div>
+                <h2 style="text-align: center;">
+                <font color="#99ff00" face="Lato">Sempre leia as mensagens!</font>
+                </h2>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Iniciando um projeto</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Iniciar git em um projeto
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">cd pasta_do_projeto<br>git init</pre>
+                </li>
+                <li class="fragment">
+                Ajuda
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git help init
+                </pre>
+                </li>
+                <li class="fragment">
+                Status
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git status</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Áreas do Git</h2>
+                <br>
+                <div style="font-size: 45.0px;line-height: 120.0%;text-align: left;">
+                <ul>
+                <li>
+                <b>Working directory:</b> diretório atual de trabalho</li>
+                <li>S<b>tage area:</b> índice</li>
+                <li>
+                <b>.git:</b> repositório de dados</li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Áreas do Git</h2>
+                <img src="http://git-scm.com/figures/18333fig0106-tn.png">
+                <br>
+                <div>
+                <a href="http://git-scm.com/book/en/Getting-Started-Git-Basics" style="font-size: 15.0px;">http://git-scm.com/book/en/Getting-Started-Git-Basics</a>
+                <br>
+                </div>
+
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Continuando...</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Adicionando arquivos ao índice
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git add . file.txt //apenas arquivo file.txt<br>git add . "*.txt" //todos arquivos .txt<br>git add . //Todos arquivos do working directory</pre>
+                </li>
+                <li class="fragment">Após adicionar os arquivos ficam como new file, ou seja, a serem adicionados no próximo commit.
+                </li>
+                <li class="fragment">
+                Retirar do índice
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git rm --cached file.txt</pre>
+                </li>
+                <li class="fragment">
+                Commit
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git commit -m "Primeiro commit"</pre>
+                </li>
+                <li class="fragment">
+                Log
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git log</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2>
+                <br>
+                </h2>
+                <h2>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">Dica:</b>&nbsp;<br>
+                </h2>
+                <div>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">
+                <br>
+                </b>
+                </div>
+                <h2 style="text-align: center;">
+                <font color="#99ff00" face="Lato">Sempre crie commits com&nbsp;</font>
+                </h2>
+                <h2 style="text-align: center;">
+                <font color="#99ff00" face="Lato">mensagens descrevendo a alteração feita no projeto!</font>
+                </h2>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Estrutura do commit</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Commit é um pacote, um envelope.
+                </li>
+                <li class="fragment">Após adicionar os arquivos ficam como new file, ou seja, a serem adicionados no próximo commit.
+                </li>
+                <li class="fragment">
+                Branch e tags apontam sempre para commits
+                </li>
+                <li class="fragment">
+                Commits posuem um identificador em SHA1, o que torna praticamente impossível conflito de commits.
+                </li>
+                <li class="fragment">
+                Mesmo utilizando trechos do SHA1 (até 5 caracteres no máximo), ainda assim é possível identificar o commit.
+                </li>
+                <li class="fragment">
+                O git nunca duplica conteúdos entre commits, apenas faz referência ao blob do commit anterior e adiciona os novos arquivos.
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Estrutura do commit</h2>
+                <div>
+                <br>
+                </div>
+                <img src="http://git-scm.com/figures/18333fig0301-tn.png" style="width: 700.0px;">&nbsp;<div>
+                <a href="http://git-scm.com/book/en/Git-Branching-What-a-Branch-Is" style="font-size: 15.0px;">http://git-scm.com/book/en/Git-Branching-What-a-Branch-Is</a>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Gerenciando o índice</h2>
+                <br>
+                <img src="http://git-scm.com/figures/18333fig0201-tn.png" style="width: 700.0px;">
+                <br>
+                <a href="http://git-scm.com/book/en/Git-Basics-Recording-Changes-to-the-Repository" style="font-size: 15.0px;">http://git-scm.com/book/en/Git-Basics-Recording-Changes-to-the-Repository</a>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Gerenciando o índice</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Imagine as ações abaixo:
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">Moficação no arquivo file.txt<br>git add file.txt</pre>
+                </li>
+                <li class="fragment">
+                Como desfazer?
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git reset HEAD file.txt</pre>
+                </li>
+                <li class="fragment">
+                E para voltar ao ínicio (antes de modificiar o arquivo file.txt)
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git checkout -- file.txt</pre>
+                </li>
+                <li class="fragment">
+                Para todos os arquivos
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git reset HEAD <br>//todos os arquivos voltam para status untracked</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Gerenciando o índice</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Jogar fora último commit
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git reset HEAD~1 --hard <br>//agora a cabeça aponta para o commit anterior</pre>
+                </li>
+                <li class="fragment">
+                Esta operação parece destrutiva mas não é:
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git reflog <br>//guarda todas as coisas que foram jogadas fora <br>git merge &lt; sha1 do commit desejado &gt;</pre>
+                </li>
+                <li class="fragment">
+                Voltar arquivos de commit para o índice
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git reset HEAD~1</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Gerenciando o índice</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Remover arquivos do índice
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git rm --cached &lt; file &gt;</pre>
+                </li>
+                <li class="fragment">
+                Limpar arquivos do working directory
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git clean -f</pre>
+                </li>
+                <li class="fragment">
+                Mais operações de índice...
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git add -i</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Stash</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <p class="fragment">Situação: você está desenvolvendo uma nova funcionalidade e chega um pedido para resolver um bug.&nbsp;</p>
+                <p>
+                <br>
+                </p>
+                <p class="fragment">Não é viável fazer um commit neste momento pois a funcionalidade não está pronta.</p>
+                <p>
+                <br>
+                </p>
+                <p class="fragment">Para auxiliar situações como essa, existe uma quarta área (temporária) no git, chamada stash.</p>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Stash</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Criando um stash anônimo
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git stash</pre>
+                </li>
+                <li class="fragment">
+                Listando
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git stash list</pre>
+                </li>
+                <li class="fragment">
+                Para voltar ao desenvolvimento após corrigir o bug descrito na situação acima
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git stash apply</pre>
+                </li>
+                <li class="fragment">
+                Removendo stash
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git stash clear</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Stash</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Criando stash e definindo uma identificação
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git stash save "fazendo algo"</pre>
+                </li>
+                <li class="fragment">
+                Outros comandos para stash
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git stash apply stash@[0]<br>//volta para o stash desejado<br>git stash pop<br>//tira da lista, aplica e apaga o stash<br>git stash drop stash{0} <br>//retira da lista de stash</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Branch</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Objetivo de trabalhar com branches: separar funcionalidades durante o desenvolvimento.
+                </li>
+                <li class="fragment">Troca de contexto sem atrito</li>
+                <li class="fragment">
+                Criando branch chamando "desenvolvimento"
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git checkout -b "desenvolvimento"</pre>
+                </li>
+                <li class="fragment">
+                Trocando de master para "desenvolvimento"
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git checkout desenvolvimento</pre>
+                </li>
+                <li class="fragment">
+                Listando
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git branch</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Branch</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Visualizando histórico
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git log --graph</pre>
+                </li>
+                <li class="fragment">
+                Unindo alterações feitas em um branch (ex: "desenvolvimento") para o master
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git checkout master <br>git merge desenvolvimento</pre>
+                </li>
+                <li class="fragment">
+                Removendo branch
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git git branch -d desenvolvimento</pre>
+                </li>
+                <li class="fragment">
+                GUI para visualização
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">gitk --all &amp;</pre>
+                </li>
+                <li class="fragment">
+                Mesclando pequenos commits em um único
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git merge &lt; branch &gt; --squash</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2>
+                <b style="color: rgb(255,255,255);font-size: 80.0px;">Dica:</b>&nbsp;</h2>
+                <div>
+                </div>
+                <h2 style="text-align: center;">
+                <font color="#99ff00" face="Lato">Evite trabalhar no master. O ideal é que cada branch tenha uma funcionalidade.</font>
+                </h2>
+                <div>
+                <img src="http://git-scm.com/figures/18333fig0319-tn.png">
+                <font color="#99ff00" face="Lato">
+                <br>
+                </font>
+                </div>
+                <a href="http://git-scm.com/book/en/Git-Branching-Branching-Workflows" style="font-size: 15.0px;">http://git-scm.com/book/en/Git-Branching-Branching-Workflows</a>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Merge / Rebase</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">Situação: estou trabalhando em um branch e alguém alterou o master</li>
+                <li class="fragment">
+                O que deve ser feito é: manter sempre o branch atual atulizado pelo master.
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git rebase master</pre>
+                </li>
+                <li class="fragment">
+                Se existir um conflito, ou seja, arquivo local é diferente do arquivo que está no master, o arquivo deve ser analizado e depois de corrigir o conflito:
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git rebase --continue</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Merge / Rebase</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li  class="fragment">
+                Se estiver em trabalhando com um servidor remoto, deve ser feito merge, pois o rebase é destruitivo.
+                </li>
+                <li  class="fragment">Com rebase a linha de histório é reta, com merge é criado um desvio.</li>
+                <li  class="fragment">Merge traz os commits e adiciona mais um no final.</li>
+                <li  class="fragment">Rebase junta todos os commits linearmente.</li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">
+                <b>Merge</b>
+                <br>
+                </h2>
+                <div>
+                <img src="http://git-scm.com/figures/18333fig0328-tn.png">
+                <b>
+                <br>
+                </b>
+                </div>
+                <h2 style="color: rgb(246,78,59);text-align: center;">
+                <b>Rebase</b>
+                <br>
+                </h2>
+                <div>
+                <img src="http://git-scm.com/figures/18333fig0329-tn.png">
+                <br>
+                </div>
+                <a href="http://git-scm.com/book/en/Git-Branching-Rebasing" style="font-size: 15.0px;">http://git-scm.com/book/en/Git-Branching-Rebasing</a>
+
+
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Respositórios remotos</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Clonando um repositório
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git clone teste/.git teste2</pre>
+                </li>
+                <li class="fragment">
+                Mostrando origem
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git remote<br>git remote show origin</pre>
+                </li>
+                <li class="fragment">
+                Criando branch local a partir de branch remoto
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git checkout -b desenvolvimento origin/desenvolvimento</pre>
+                </li>
+                <li class="fragment">
+                Exibindo braches locais e remotos
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git branch -a</pre>
+                </li>
+                <li class="fragment">
+                Enviando para repositório remoto
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git push origin master</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Modelo Centralizado</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                Cenário: Dois desenvolvedores, cada um com uma cópia local e um servidor remoto.
+                </li>
+                <li class="fragment">
+                Criando repositório no servidor
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">mkdir teste.git <br>cd teste.git <br>git init --bare</pre>
+                </li>
+                <li class="fragment">
+                Adicionando permissão de acesso
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">cd ~/.ssh <br>echo "chave rsa do usuario" &gt;&gt; autorized_keys</pre>
+                </li>
+                <li class="fragment">
+                Chave ssh no usuário
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">cat ~/.ssh/id_rsa.pub</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Modelo Centralizado</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">
+                No usuário, adicionando remote ao repositório local
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git remote add origin vagner@172.16.100.198:/home/git/repositorios/teste.git</pre>
+                </li>
+                <li class="fragment">
+                Trazendo alterações do repositório remoto para um branch especial
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git fech origin master</pre>
+                </li>
+                <li class="fragment">
+                Fech seguido de merge
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git pull</pre>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">
+                <b>Modelo Centralizado</b>
+                <br>
+                </h2>
+                <div>
+                <img src="http://git-scm.com/figures/18333fig0501-tn.png">
+                <b>
+                <br>
+                </b>
+                </div>
+                <h2 style="color: rgb(246,78,59);text-align: center;">
+                <b>Modelo Distribuído</b>
+                <br>
+                </h2>
+                <div>
+                <img src="http://git-scm.com/figures/18333fig0502-tn.png">
+                <br>
+                </div>
+                <a href="http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows" style="font-size: 15.0px;">http://git-scm.com/book/en/Distributed-Git-Distributed-Workflows</a>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">
+                <b>Gitweb</b>
+                <br>
+                </h2>
+                <div>
+                <p>Interface gráfica para visualização dos repositórios no servidor remoto.</p>
+                <img src="http://git-scm.com/figures/18333fig0401-tn.png">
+                <b>
+                <br>
+                </b>
+                </div>
+                <a href="http://git-scm.com/book/ch4-6.html" style="font-size: 15.0px;">http://git-scm.com/book/ch4-6.html</a>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Extras</h2>
+                <br>
+                <h3>
+                <b class="fragment">Tags</b>
+                </h3>
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git tag v1.0 <br>git push origin v1.0 <br>git push --tags <br>git -b &lt; branch &gt; v0.8
+                </pre>
+                <h3 class="fragment">Logs</h3>
+                <pre class="fragment" style="font-size: 24.0px;width: 710.0px;">git log --stash <br>git log --pretty=oneline <br>git log --pretty=format:"[%an %ad] %h - %s" <br>git log --pretty=format:"%h - %s" --graph <br>git log --since=30.minutes <br>git log --since=4.hours --until=2.hours <br>git log --since=4.hours --until=2.hours --before="2013-03-15"
+                </pre>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Considerações Finais</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li class="fragment">Controle de versões é essencial para organização do projeto</li>
+                <li class="fragment">É fácil, basta usar frequentemente</li>
+                <li class="fragment">Facilita contribuição em projetos open source</li>
+                <li class="fragment">
+                <a href="http://github.com/">Github</a> é a melhor forma de mostrar seu trabalho como desenvolvedor, seja para empresas ou pessoas</li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Referências</h2>
+                <br>
+                <div style="font-size: 35.0px;line-height: 45.0px;text-align: left;">
+                <ul>
+                <li>
+                <a href="http://git-scm.com/book">Git SCM - Pro Git Book</a>
+                </li>
+                <li>
+                <a href="http://blip.tv/akitaonrails/screencast-come-ando-com-git-6074964">Fabio Akita - Screencast - Começando com Git</a>
+                </li>
+                <li>
+                <a href="http://eagain.net/articles/git-for-computer-scientists/">Git for Computer Scientists</a>
+                </li>
+                <li>
+                <a href="http://git-scm.com/doc">Git Documentation</a>
+                </li>
+                </ul>
+                </div>
+                </section>
+                <section>
+                <h2 style="color: rgb(246,78,59);text-align: center;">Perguntas?</h2>
+                <img src="http://i.imgur.com/BeUryPh.jpg" style="border: 0;height: 590.0px;box-shadow: 10.0px 10.0px 20.0px rgb(13,13,13);">
+                </section>
+                <section>
+                <h2 style="color: rgb(246, 78, 59); text-align: center; ">Obrigado!</h2>
+
+                <ul style="list-style: none; float: left;">
+                <li>
+                <img src="http://vagnersantana.com/img/social/gt2.svg" alt="" style="margin-top: 3px !important; background: none;border: 0;box-shadow: 0 0 0; width:50px; border: 0; box-shadow: 0 0 0;">
+                <a href="http://github.com/vagnervjs">Github</a>
+                </li>
+                <li>
+                <img src="http://vagnersantana.com/img/social/fb2.svg" alt="" style="margin-top: 3px !important; background: none;border: 0;box-shadow: 0 0 0; width:50px; border: 0; box-shadow: 0 0 0;">
+                <a href="http://fb.com/vagnervjs">Facebook</a>
+                </li>
+                <li>
+                <img src="http://vagnersantana.com/img/social/tw2.svg" alt="" style="margin-top: 3px !important; background: none;border: 0;box-shadow: 0 0 0; width:50px; border: 0; box-shadow: 0 0 0;">
+                <a href="http://twitter.com/vagnervjs">Twitter</a>
+                </li>
+                <li>
+                <img src="http://vagnersantana.com/img/social/gp2.svg" alt="" style="margin-top: 3px !important; background: none;border: 0;box-shadow: 0 0 0; width:50px; border: 0; box-shadow: 0 0 0;">
+                <a href="https://plus.google.com/108752857690265245030">Google +</a>
+                </li>
+                <li>
+                <img src="http://vagnersantana.com/img/social/lk2.svg" alt="" style="margin-top: 3px !important; background: none;border: 0;box-shadow: 0 0 0; width:50px; border: 0; box-shadow: 0 0 0;">
+                <a href="http://www.linkedin.com/in/vagnervjs">Linkedin</a>
+                </li>
+                <li>
+                <img src="http://vagnersantana.com/img/social/sl2.svg" alt="" style="margin-top: 3px !important; background: none;border: 0;box-shadow: 0 0 0; width:50px; border: 0; box-shadow: 0 0 0;">
+                <a href="http://slideshare.com/vagnervjs">Slideshare</a>
+                </li>
+                </ul>
+
+                <img src="http://i.imgur.com/WXcRqcH.png" style="background: none;border: 0;box-shadow: 0 0 0; float: right">
+                </section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: 'plugin/markdown/showdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/search/search.js', async: true, condition: function() { return !!document.body.classList; } }
+					// { src: 'plugin/remotes/remotes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
