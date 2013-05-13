@@ -1,0 +1,46 @@
+@import "compass/css3";
+
+// Fonts
+@import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300); //$font_1
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
+//$font_2
+
+$font_1: 'Open Sans';
+$font_2: 'Josefin Sans';
+
+// Mixins
+@mixin bg($colorI, $colorO){
+	@include background-image(radial-gradient($colorI, $colorO)); 
+}
+
+// Style
+.bg_c01{ @include bg(#69ccff, #0d273e); } //azul claro
+.bg_c02{ @include bg(#1ac885, #154025); } //verde claro
+.bg_c03{ @include bg(#e4d023, #59500d); } //amarelo
+.bg_c04{ @include bg(#ef656a, #511818); } //bordo
+.bg_c05{ @include bg(#c865c4, #5c2e5a); } //lilás
+.bg_c06{ @include bg(#5559c8, #00003c); } //azul escuro
+.bg_c07{ @include bg(#24b6c8, #0c4148); } //azul piscina
+.bg_c08{ @include bg(#ff3a8f, #470421); } //rosa
+.bg_c09{ @include bg(#6be133, #17330b); } //verde limão
+.bg_c10{ @include bg(#7a7f88, #2a2c2f); } //cinza
+.bg_c11{ @include bg(#7c7ac8, #3c3c62); } //roxo
+.bg_c12{ @include bg(#24bfd1, #187d88); } //verde agua
+.bg_c13{ @include bg(#ff8135, #7f2f00); } //laranja
+.bg_c14{ @include bg(#c83337, #711c1f); } //vermelho
+.bg_c15{ @include bg(#57abff, #044f82); } //html5 blue
+
+.tt{
+	font-family: $font_2;
+	font-size: 72.49px !important;
+	font-weight: 400;
+}
+
+.tt-big{
+	font-size: 90px !important;
+	font-weight: 700;
+}
+
+.center{
+	text-align: center;
+}
