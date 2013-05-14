@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Transitions Demo - Infoeste</title>
+
+	<style>
+		a .circle{ 
+			-webkit-transition: all 2s ease;
+			-moz-transition: all 2s ease;
+			-o-transition: all 2s ease;
+			transition: all 2s ease;
+		}
+		a:hover .circle{ 
+			-webkit-transform: rotate(-720deg);
+			-moz-transform: rotate(-720deg);
+			-o-transform: rotate(-720deg);
+			transform: rotate(-720deg);
+		}
+	</style>
+</head>
+<body>
+	<a href="#">
+		<img class="circle" src="../images/circle.png" alt="Circulo" />
+	</a>
+</body>
+</html>

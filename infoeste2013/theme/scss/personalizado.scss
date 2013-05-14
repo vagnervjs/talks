@@ -2,8 +2,7 @@
 
 // Fonts
 @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,700,600,300); //$font_1
-@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:400,700);
-//$font_2
+@import url(http://fonts.googleapis.com/css?family=Josefin+Sans:400,700); //$font_2
 
 $font_1: 'Open Sans';
 $font_2: 'Josefin Sans';
@@ -14,21 +13,28 @@ $font_2: 'Josefin Sans';
 }
 
 // Style
+
+.info p{
+	float: left;
+	padding-left: 40px;
+}
+
 .bg_c01{ @include bg(#69ccff, #0d273e); } //azul claro
 .bg_c02{ @include bg(#1ac885, #154025); } //verde claro
 .bg_c03{ @include bg(#e4d023, #59500d); } //amarelo
 .bg_c04{ @include bg(#ef656a, #511818); } //bordo
 .bg_c05{ @include bg(#c865c4, #5c2e5a); } //lilás
-.bg_c06{ @include bg(#5559c8, #00003c); } //azul escuro
+.bg_c06{ @include bg(#2bb5ff, #0d133b); } //azul escuro
 .bg_c07{ @include bg(#24b6c8, #0c4148); } //azul piscina
-.bg_c08{ @include bg(#ff3a8f, #470421); } //rosa
+.bg_c08{ @include bg(#ff3a8f, #370219); } //rosa
 .bg_c09{ @include bg(#6be133, #17330b); } //verde limão
-.bg_c10{ @include bg(#7a7f88, #2a2c2f); } //cinza
-.bg_c11{ @include bg(#7c7ac8, #3c3c62); } //roxo
-.bg_c12{ @include bg(#24bfd1, #187d88); } //verde agua
+.bg_c10{ @include bg(#bad1f6, #1b1c1e); } //cinza
+.bg_c11{ @include bg(#9569ff, #302252); } //roxo
+.bg_c12{ @include bg(#2ae8ff, #082c30); } //verde agua
 .bg_c13{ @include bg(#ff8135, #7f2f00); } //laranja
-.bg_c14{ @include bg(#c83337, #711c1f); } //vermelho
+.bg_c14{ @include bg(#ff4146, #5c1619); } //vermelho
 .bg_c15{ @include bg(#57abff, #044f82); } //html5 blue
+.bg_c16{ @include bg(#000000, #000000); } //black
 
 .tt{
 	font-family: $font_2;
@@ -41,6 +47,22 @@ $font_2: 'Josefin Sans';
 	font-weight: 700;
 }
 
+.icon{
+	font-size: 180px;
+}
+
 .center{
 	text-align: center;
+}
+
+.back{
+	background: black; 
+	padding: 5px; 
+	border-radius: 10px;
+}
+
+.ul-big{ font-size: 35px; }
+input{
+	width: 100px;
+	height: 50px;
 }

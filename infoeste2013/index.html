@@ -26,6 +26,7 @@ URL: https://code.google.com/p/io-2012-slides
   <!--<meta name="viewport" content="initial-scale=0.4">-->
   <meta name="apple-mobile-web-app-capable" content="yes">
   <link rel="stylesheet" media="all" href="theme/css/default.css">
+  <link rel="stylesheet" media="all" href="fonts/icomoon/style.css">
   <link rel="stylesheet" media="only screen and (max-device-width: 480px)" href="theme/css/phone.css">
   <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->
   <script data-main="js/slides" src="js/require-1.0.8.min.js"></script>
@@ -50,7 +51,7 @@ URL: https://code.google.com/p/io-2012-slides
   <slide class="bg_c01">
     <article class="flexbox vcenter">
       <img src="images/w3c.png" alt="W3C Logo">
-      <h1 class="tt tt-big center">e <br> WHATWG</h1>
+      <h1 class="tt tt-big center"><br> WHATWG <br><br> Open Web Platform</h1>
     </article>
   </slide>
 
@@ -60,45 +61,355 @@ URL: https://code.google.com/p/io-2012-slides
   </slide>
 
   <slide class="bg_c02">
+    <article class="flexbox vcenter">
+      <h2 class="tt">Browser Engines</h2>
+      <br>
+      <img src="images/browsers.png" alt="All browsers">
+    </article>
   </slide>
 
-  <slide class="bg_c03">
-  </slide>
-
-  <slide class="bg_c04">
-  </slide>
-
-  <slide class="bg_c05">
-  </slide>
-
-  <slide class="bg_c06">
-  </slide>
-
-  <slide class="bg_c07">
-  </slide>
-
-  <slide class="bg_c08">
-  </slide>
-
-  <slide class="bg_c09">
+  <slide class="bg_c12 nobackground">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Perca tempo configurando suas ferramentas...</h1>
+        <img src="images/tools.svg" alt="Semântica" width="650px" height="650px" style="margin-top: 60px;">
+    </article>
   </slide>
 
   <slide class="bg_c10">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Sublime Text</h1>
+      <img src="images/sublime.png" height="418" width="820" alt="Sublime Text">
+      <br><br>
+      <a href="http://www.sublimetext.com/">http://www.sublimetext.com</a><br>
+      <a href="http://wbond.net/sublime_packages/package_control">Sublime Package Controll</a>
+    </article>
+  </slide>
+  
+  <slide class="bg_c08"> 
+    <article class="flexbox vcenter">
+      <h1 class="tt">Emmet</h1>
+      <video src="videos/emmet.webm" autoplay autoloop loop></video>
+      <br><br>
+      <a href="http://emmet.io/">http://emmet.io</a>
+    </article>
+  </slide>
+  <slide class="bg_c03">
+    <article class="flexbox vcenter">
+      <h1 class="tt">De que é a responsabilidade</h1>
+      <br>
+      <span class="info">
+        <p>
+          <span class="icon icon-html5"></span> <br><br>
+          HTML <br> Informação
+        </p>
+        <p>
+          <span class="icon icon-css3"></span> <br><br>
+          CSS <br> Aparência
+        </p>
+        <p>
+          <span class="icon icon-rocket"></span> <br><br>
+          JavaScript <br> Comportamento
+        </p>
+      </span>
+    </article>
   </slide>
 
-  <slide class="bg_c11">
+  <slide class="bg_c04">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Estrutura</h1>
+        <pre class="prettyprint" data-lang="html">
+        &lt;!DOCTYPE html>
+        &lt;html lang="en">
+        &lt;meta charset="UTF-8">
+        &lt;head>
+          &lt;title>Document&lt;/title>
+        &lt;/head>
+        &lt;body>
+          
+        &lt;/body>
+        &lt;/html>
+        </pre>
+    </article>
   </slide>
 
-  <slide class="bg_c12">
+  <slide class="bg_c12 nobackground">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Semântica</h1>
+        <img src="images/semantics.svg" alt="Semântica" width="650px" height="650px">
+    </article>
   </slide>
 
-  <slide class="bg_c13">
+  <slide class="bg_c16 nobackground">
+    <article class="fexbox vcenter">
+      <img src="images/html_semantica.png" height="640" width="1024" alt="">
+    </article>
+  </slide>
+
+  <slide class="bg_c06">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Formulários</h1>
+      <br>
+      <form action="#">
+        <input type="color" name="color" value="#f55c00" required>
+        <input type="date" name="date" required>
+        <input type="number" name="number" required>
+        <input type="text" name="text" placeholder="Insira seu texto" required>
+        <input type="text" name="text" pattern="[^ @]*@[^ @]*" placeholder="name@mail.com" required>
+        <input type="text" x-webkit-speech />
+        <br>
+        <input type="search" name="search" required>
+        <input type="range" name="range" min ="-2.5" max="3.0" step ="0.1" required>
+        <input type="submit" value="Go">
+
+        <br>
+        <progress></progress>
+        <progress value="75" max="100"></progress>
+        <meter value="91" min="0" max="100" low="40" high="90" optimum="100"</meter>
+      </form>
+    </article>
+  </slide>
+
+  <slide class="bg_c07 ">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Multimedia</h1>
+      <h2 class="tt">Audio / Video</h2>
+      <br>
+      <iframe data-src="videos/index.html" style="width:840px; height:360px; box-shadow: none; background: none; border: none;"></iframe>
+    </article>
+  </slide>
+
+  <slide class="bg_c08 nobackground">
+    <article class="flexbox vcenter">
+      <h1 class="tt">CSS (3)</h1>
+      <img src="images/css.svg" alt="CSS3" width="700px" height="700px">
+    </article>
+  </slide>
+
+  <slide class="bg_c09">
+    <article class="flexbox vcenter">
+      <h1 class="tt">CSS</h1>
+      <h2>Seletores Básicos</h2>
+      <br>
+      <pre class="prettyprint" data-lang="css">
+        /* Selecionando uma tag */
+        p { color: #b23464; }
+
+        /* Selecionando um ID */
+        #menu{
+          font-size: 30px;
+          text-align: center;
+        }
+
+        /* Selecionando uma classe */
+        .box{
+          width: 600px;
+          height: 600px;
+        }
+      </pre>
+    </article>
+  </slide>
+
+  <slide class="bg_c02">
+    <article class="flexbox vcenter">
+      <h1 class="tt">CSS</h1>
+      <h2>Seletores Avançados</h2>
+      <br>
+      <pre class="prettyprint" data-lang="css">
+        /* Primeiro elemento parágrafo da div com a
+           classe article */
+        div.article p:first-child {
+          font-style: italic;
+        }
+
+        /* Estados */
+        a:link{ color: #00b295; }
+        a:active{ color: #005a4c; }
+        a:hover{ color: #a4a4b2; }
+
+        input[type=text]:focus {
+          background: #f7ff47;
+        }
+      </pre>
+    </article>
   </slide>
 
   <slide class="bg_c14">
+    <article class="flexbox vcenter">
+      <h1 class="tt">CSS3 News</h1>
+      <br>
+      <ul class="ul-big build">
+        <li>Border-radius</li>
+        <li>Transparency / Opacity</li>
+        <li>Gradients</li>
+        <li>Animations</li>
+        <li>Text-shadow</li>
+        <li>Box-shadow</li>
+        <li>Background Decoration</li>
+        <li>Box Sizing</li>
+      </ul>
+    </article>
+  </slide>
+
+  <slide class="nobackground bg_c16">
+    <article>
+      <h1 class="tt">Fontes com CSS3</h1>
+      <br>
+      <iframe data-src="https://developer.apple.com/safaridemos/showcase/typography/" style="width:900px; height:708px !important; box-shadow: none; background: none; border: none;"></iframe>
+    </article>
+  </slide>
+
+  <slide class="bg_c11">
+    <article class="flexbox vcenter">
+      <h1 class="tt">@font-face</h1>
+      <br>
+      <pre class="prettyprint" data-lang="css">
+          @font-face {
+            font-family: 'icomoon';
+            src:url('fonts/icomoon.eot');
+            src:url('fonts/icomoon.eot?#iefix') format('embedded-opentype'),
+              url('fonts/icomoon.woff') format('woff'),
+              url('fonts/icomoon.ttf') format('truetype'),
+              url('fonts/icomoon.svg#icomoon') format('svg');
+            font-weight: normal;
+            font-style: normal;
+          }
+
+          .ico{ font-family: 'icomoon'; }
+      </pre>
+    </article>
+  </slide>
+
+  <slide class="bg_c12">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Animações</h1>
+      <br>
+      <style>
+        a .circle{ 
+          -webkit-transition: all 2s ease;
+          -moz-transition: all 2s ease;
+          -o-transition: all 2s ease;
+          transition: all 2s ease;
+        }
+        a:hover .circle{ 
+          -webkit-transform: rotate(-720deg);
+          -moz-transform: rotate(-720deg);
+          -o-transform: rotate(-720deg);
+          transform: rotate(-720deg);
+        }
+      </style>
+      <a href="#">
+        <img class="circle" src="images/circle.png" alt="Circulo" />
+      </a>
+
+      <pre class="prettyprint" data-lang="css">
+        a .circle{ 
+          transition: all 2s ease;
+        }
+        a:hover .circle{ 
+          transform: rotate(-720deg);
+        }
+      </pre>
+    </article>
+  </slide>
+
+  <slide class="bg_c13">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Vendors Prefixes</h1>
+      <br>
+      <pre class="prettyprint" data-lang="css">
+        a .circle{ 
+          -webkit-transition: all 2s ease;
+          -moz-transition: all 2s ease;
+          -o-transition: all 2s ease;
+          transition: all 2s ease;
+        }
+        a:hover .circle{ 
+          -webkit-transform: rotate(-720deg);
+          -moz-transform: rotate(-720deg);
+          -o-transform: rotate(-720deg);
+          transform: rotate(-720deg);
+        }
+      </pre>
+    </article>
+  </slide>
+  
+  <slide class="fill nobackground" style="background-image: url(images/prefix_tree.png)">
+    <a href="http://leaverou.github.io/prefixfree" class="back">http://leaverou.github.io/prefixfree</a>
+  </slide>
+
+  <slide class="bg_c16 nobackground">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Crie seus padrões!</h1>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/html5boilerplate.png)">
+    <br>
+    <a href="http://html5boilerplate.com/" class="back">http://html5boilerplate.com/</a>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/initializr.png)">
+    <br><br><br>
+    <a href="http://www.initializr.com" class="back">http://www.initializr.com</a>
+  </slide>
+  
+  <slide class="fill nobackground" style="background-image: url(images/modernizr.png)">
+    <br><br><br>
+    <a href="http://modernizr.com" class="back">http://modernizr.com</a>
+  </slide>
+  
+  <slide class="fill nobackground" style="background-image: url(images/caniuse.png)">
+    <br><br><br>
+    <a href="http://caniuse.com/" class="back">http://caniuse.com/</a>
+  </slide>
+
+  <slide class="bg_c16 nobackground">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Onde buscar conhecimento?</h1>
+    </article>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/diveintohtml5.png)">
+    <a href="http://diveintohtml5.com.br" class="back">http://diveintohtml5.com.br</a>
+  </slide>
+
+ <slide class="fill nobackground" style="background-image: url(images/html5rocks.png)">
+    <br><br><br>
+    <a href="http://www.html5rocks.com" class="back">http://www.html5rocks.com</a>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/html5doctor.png)">
+    <br><br><br>
+    <a href="http://html5doctor.com" class="back">http://html5doctor.com</a>
+  </slide>
+
+  <slide class="fill nobackground" style="background-image: url(images/tableless.png)">
+    <a href="http://tableless.com" class="back">http://tableless.com</a>
+  </slide>
+
+  <slide class="bg_c12">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Livros</h1>
+      <br>
+      <img src="images/books.jpg" alt="Livros HTML5" width="420px" height="460px">
+    </article>
+  </slide>
+
+  <slide class="bg_c09 nobackground">
+    <article class="flexbox vcenter">
+      <iframe data-src="feedback/index.html" style="width:680px; height:650px !important; box-shadow: none; background: none; border: none;"></iframe>
+    </article>
   </slide>
 
   <slide class="bg_c15">
+    <article class="flexbox vcenter">
+      <h1 class="tt">Obrigado =D</h1>
+
+      <br><br><br>
+      <a href="http://vagnersantana.com">http://vagnersantana.com</a><br><br>
+      <a href="http://github.com/vagnervjs">http://github.com/vagnervjs</a><br><br>
+      <a href="http://twitter.com/vagnervjs">@vagnervjs</a><br>
+    </article>
   </slide>
 
   <slide class="backdrop"></slide>
